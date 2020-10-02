@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" enctype="application/json" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>index</title>
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+
+            function scrapData(){
+                console.log("Entering in Function");
+                $.ajax({
+                    type : "POST",
+                    url : "http://localhost:30000/list/scrapdata",
+                    success : function(data){
+                        console.log("Scrap Links : " + JSON.stringify(data));
+                    }
+                })
+            }
+        </script>
+    </head>
+    <body onload="javascript:scrapData()">
+        <nav class = "navigationWrapper">
+            <div class="logoWrapper">
+                <span class="stylish">Times Of </span>
+                <span class="logo">India</span>
+            </div>
+            <ul class="navigation">
+                <li class="parent"><a class="link" href="./articleLinks.html">Article</a></li>
+            </ul>
+        </nav>
+    </body>    
+</html>

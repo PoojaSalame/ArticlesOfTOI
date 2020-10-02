@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>VAlid Links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <style>
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 40%;
+        }
+        
+        td,
+        th {
+            border-bottom: 1px solid rgb(255, 228, 228);
+            text-align: center;
+            padding: 5px;
+            color: white;
+        }
+        
+        th {
+            font-weight: bold;
+            background-color: rgb(230, 137, 137);
+        }
+        
+        table tr:hover {
+            background-color: #eeb3b3;
+        }
+        
+        button {
+            background-color: rgb(177, 130, 130);
+            color: white;
+            padding: 10px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+        }
+        
+        .button:hover {
+            background-color: #f7dada;
+        }
+    </style>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        function getAllArticles(){
+            $.ajax({
+                type: "GET",
+                url : "http://localhost:30000/list/articlelist",
+                success: function(data){
+                    if (data.err){
+                       var error = data.err;
+                       alert(error);
+                       console.log(error);
+                    }
+                        
+                        //console.log(JSON.stringify(data.validarticles)); 
+                        
+                      
+                    var output = '<table id="tblLinks", align="center"><thead><th id="articles">Articles</th></thead><tbody>';
+                         for(var i in data.validarticles){
+                             for(var j in data.validarticles[i].links){
+
+                            //console.log(JSON.stringify(data.validarticles[i].links[j])); 
+                            output +=
+                                '<tr id="sn"><td id="url">'+
+                                data.validarticles[i].links[j] +
+                                '</td></td>';
+
+                            }                           
+                        }
+                    output += '</tbody></table>';
+
+                    $('#display_table').html(output);
+                }
+            })
+        }
+
+    
+    </script>
+</head>
+
+<body onload="getAllArticles()">
+
+    <div style="height: 100%;width: 100%;">
+        <div class="logoWrapper" style="width: 100%;height: 8%;background-color: black;">
+            <span class="stylish" style="color:white;"><h2>Times Of</h2></span>
+            <span class="logo"><h2>India</h2></span>           
+        </div>
+        <br>
+        <div id=display_table>
+
+        </div>
+       
+    </div>
+</body>
+
+</html>
