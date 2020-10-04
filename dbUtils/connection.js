@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 //mongoose.plugin(mongooseFindAndFilter);
 
 // We need to difine the URL
-var URL = process.env.URL || 'mongodb://localhost:27017/studentApplication';
+var URL = process.env.URL || 'mongodb://localhost:27017/ValidArticle';
 
 mongoose.set('useCreateIndex', true);
 
